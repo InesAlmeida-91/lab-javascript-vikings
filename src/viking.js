@@ -18,9 +18,6 @@ class Viking extends Soldier {
         super(health, strength);
         this.name = name;
     }
-    /*attack() {
-        return this.strength
-    }*/ //put the methods only when have changes? or its a good practice to put always? since inheritance is for attributes and methods
     receiveDamage(damage) {
         this.health = this.health - damage 
          if (this.health > 0) {
@@ -52,27 +49,28 @@ receiveDamage(damage) {
 // War
 class War {
     constructor() {
+        this.vikingArmy = []
+        this.saxonArmy = []
     }
-    vikingArmy = []
-    saxonArmy = []
 addViking(viking) {
-    this.vikingArmy.unshift(viking) //why put this.??
+    this.vikingArmy.push(viking)
 }
 addSaxon(saxon) {
-    this.saxonArmy.unshift(saxon)
+    this.saxonArmy.push(saxon)
 }
 vikingAttack() {
     let randomSaxon = Math.floor(Math.random() * this.saxonArmy.length)
     let randomViking = Math.floor(Math.random() * this.vikingArmy.length)
-//Saxon receiveDamage() equal to the strength of a Viking should remove dead Saxons from the army
-    //this.receiveDamage(randomSaxon) = this.attack(randomViking)
-    this.saxonArmy.shift()
+    let finalVikingAttack = this.saxonArmy[randomSaxon].receiveDamage(this.vikingArmy[randomViking].strength)
+    this.saxonArmy.pop()
+    return finalVikingAttack
 }
 saxonAttack() {
     let randomSaxon = Math.floor(Math.random() * this.saxonArmy.length)
     let randomViking = Math.floor(Math.random() * this.vikingArmy.length)
-    //Viking receiveDamage() equal to the strength of a Saxon
-    this.vikingArmy.shift()
+    let finalSaxonAttack = this.vikingArmy[randomViking].receiveDamage(this.saxonArmy[randomSaxon].strength)
+    this.vikingArmy.pop()
+    return finalSaxonAttack
 }
 showStatus() {
     if(this.saxonArmy.length === 0) {
