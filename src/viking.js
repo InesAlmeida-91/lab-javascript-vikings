@@ -65,16 +65,14 @@ vikingAttack() {
     let randomSaxon = Math.floor(Math.random() * this.saxonArmy.length)
     let randomViking = Math.floor(Math.random() * this.vikingArmy.length)
 //Saxon receiveDamage() equal to the strength of a Viking should remove dead Saxons from the army
-    this.receiveDamage(randomSaxon) = this.attack(randomViking)
+    //this.receiveDamage(randomSaxon) = this.attack(randomViking)
     this.saxonArmy.shift()
-    //return `Saxon has ${this.damage.saxon} of damage and Viking has ${this.strength.viking} of strength`
 }
 saxonAttack() {
     let randomSaxon = Math.floor(Math.random() * this.saxonArmy.length)
     let randomViking = Math.floor(Math.random() * this.vikingArmy.length)
     //Viking receiveDamage() equal to the strength of a Saxon
-    this.saxonArmy.shift()
-    //return `Viking has ${this.damage.viking} of damage and Saxon has ${this.strength.saxon} of strength`
+    this.vikingArmy.shift()
 }
 showStatus() {
     if(this.saxonArmy.length === 0) {
